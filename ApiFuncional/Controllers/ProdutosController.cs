@@ -23,7 +23,7 @@ namespace ApiFuncional.Controllers
             return await _context.Produtos.ToListAsync();
         }
 
-        [HttpGet]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
@@ -32,6 +32,13 @@ namespace ApiFuncional.Controllers
         [HttpPost]
         public async Task<ActionResult<Produto>> PostProduto(Produto produto)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(new ValidationProblemDetails(ModelState)
+                {
+                    Title = "Um ou mais erros de validação ocorreram!"
+                });
+            }
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
 
@@ -40,6 +47,10 @@ namespace ApiFuncional.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Produto>> PutProduto(int id, Produto produto)
         {
+            if (id != produto.Id) return BadRequest();
+
+            if (!ModelState.IsValid) return ValidationProblem(ModelState);
+
             _context.Produtos.Update(produto);
             await _context.SaveChangesAsync();
 

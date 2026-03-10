@@ -19,3 +19,4 @@ Thumbs.db
 # ASP.NET configs
 appsettings.Development.json
 appsettings.Local.json
+/ApiFuncional/appsettings.json
