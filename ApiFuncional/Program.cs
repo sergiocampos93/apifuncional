@@ -14,6 +14,22 @@ builder.Services.AddControllers()
     {
         option.SuppressModelStateInvalidFilter = true;
     });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Development", builder =>
+        builder
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+
+    options.AddPolicy("Production", builder =>
+        builder
+               .WithOrigins("https://localhost:9000")
+               .WithMethods("POST")
+               .AllowAnyHeader());
+});
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
@@ -86,9 +102,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("Development");
+}
+else
+{
+    app.UseCors("Production");
 }
 
-app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
