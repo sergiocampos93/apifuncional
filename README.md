@@ -4,22 +4,28 @@ Projeto experimental de **API REST em ASP.NET Core**, explorando práticas de de
 
 ## Tecnologias
 
-* ASP.NET Core
-* Entity Framework Core
-* SQL Server
-* ASP.NET Core Identity
-* Swagger / OpenAPI
+- ASP.NET Core
+- Entity Framework Core
+- SQL Server
+- ASP.NET Core Identity
+- JWT Authentication
+- Role-based Authorization
+- Swagger / OpenAPI
 
-## Funcionalidades atuais
+## Funcionalidades
 
-* CRUD de produtos
-* Validações com Data Annotations
-* Migrations com EF Core
-* Integração com Identity
+- API REST para gerenciamento de produtos
+- Autenticação com JWT
+- Autorização baseada em roles
+- Integração com ASP.NET Core Identity
+- Persistência com Entity Framework Core
+- Migrations para controle de schema do banco
+- Documentação automática com Swagger
+- Configuração de CORS para integração com aplicações frontend
 
 ## Próximos passos
 
-* Autenticação com JWT
-* Autorização por roles
-* DTOs para requests/responses
-* Melhor organização em camadas
+- Paginação e filtros nos endpoints
+- Melhor tratamento de erros
+- Logs estruturados
+- Testes unitários
